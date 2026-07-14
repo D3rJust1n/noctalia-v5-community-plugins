@@ -32,7 +32,7 @@ local storeSizeFile = stateDir .. "/storeSize"
 local closureSizeFile = stateDir .. "/closureSize"
 
 local localHashCmd  = "nixos-version --hash 2> /dev/null | cut -c -7 > " .. localHashFile .. " &"
-local remoteHashCmd = "sleep 5 && git ls-remote https://github.com/NixOS/nixpkgs " .. branch .. " 2>/dev/null | cut -c 1-7 > " .. remoteHashFile .. " &"
+local remoteHashCmd = "git ls-remote https://github.com/NixOS/nixpkgs " .. branch .. " 2>/dev/null | cut -c 1-7 > " .. remoteHashFile .. " &"
 local nixosGenerationsCmd = "nixos-rebuild list-generations | tail -n +2 | wc -l"
 local nixosCurrentGenCmd = "nixos-rebuild list-generations | grep True | awk '{print $1}'"
 local hmGenerationsCmd = "home-manager generations | wc -l"
@@ -63,7 +63,6 @@ noctalia.writeFile(remoteHashFile, "")
 
 function update()
     if isInit or (os.time() - getState("lastCheckTime")) >= 60 * updateCheckInterval then
-        isInit = false
         cancelCheck()
         checkUpdate()
     end
@@ -96,6 +95,13 @@ function checkUpdate()
         return
     end
 
+    local remoteCmd = remoteHashCmd
+
+    if isInit then
+        remoteCmd = "sleep 10 && " .. remoteCmd
+        isInit = false
+    end
+
     setState("lastRunTime", os.time())
 
     if cfg("show_checking_notification") then
@@ -108,7 +114,7 @@ function checkUpdate()
     noctalia.writeFile(remoteHashFile, "")
 
     noctalia.runAsync(localHashCmd)
-    noctalia.runAsync(remoteHashCmd)
+    noctalia.runAsync(remoteCmd)
 end
 
 function isCheckUpdateSuccessfully()
