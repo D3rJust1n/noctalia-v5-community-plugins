@@ -27,3 +27,14 @@ icon = "screen-share"
 description = "Enables notification Do Not Disturb while the screen is shared (niri screencast) and turns notifications back on when sharing stops. Requires niri."
 min_noctalia = "5.0.0"
 tags = ["privacy", "niri"]
+
+[[plugin]]
+id = "nzlov/daily-wallpaper"
+name = "Daily Wallpaper"
+version = "1.0.0"
+author = "nzlov"
+license = "MIT"
+icon = "photo"
+description = "Fetches a new daily wallpaper from Bing or NASA."
+min_noctalia = "5.0.0"
+tags = ["wallpaper", "desktop"]
