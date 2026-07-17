@@ -206,3 +206,14 @@ icon = "music"
 description = "Synchronized lyrics with karaoke highlighting, animated transitions, and flexible lyric sources."
 plugin_api = 3
 tags = ["bar", "service", "music", "media", "animation"]
+
+[[plugin]]
+id = "whyoolw/dropwall"
+name = "DropWall"
+version = "1.0.0"
+author = "whyoolw"
+license = "MIT"
+icon = "image"
+description = "Drag and drop an image onto the desktop to set it as wallpaper using Noctalia's wallpaper settings."
+plugin_api = 3
+tags = ["desktop", "wallpaper"]
