@@ -306,3 +306,14 @@ icon = "robot"
 description = "Claude Code companion: /claude launch + a telemetry-driven attention pulse."
 plugin_api = 3
 tags = ["ai", "productivity", "bar", "desktop", "panel", "launcher", "niri", "hyprland", "sway"]
+
+[[plugin]]
+id = "ycf/mawaqit"
+name = "Mawaqit"
+version = "1.0.0"
+author = "ycf-anon"
+license = "MIT"
+icon = "building-mosque"
+description = "Prayer times with live countdown, notifications, and azan."
+plugin_api = 3
+tags = ["bar", "panel", "service", "time", "utility"]
